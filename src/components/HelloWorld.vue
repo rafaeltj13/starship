@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from "vue";
+import { getStarships } from "../services/swapi.service";
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const count = ref(0)
+const count = ref(0);
+onMounted(async () => {
+  const a = await getStarships();
+  console.log(a);
+});
 </script>
 
 <template>

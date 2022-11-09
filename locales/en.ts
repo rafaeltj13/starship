@@ -8,5 +8,10 @@ export default {
   },
   favorites: {
     title: "Favorites",
+    addText: "Add Text",
+  },
+  paginator: {
+    prev: "Previous Page",
+    next: "Next Page",
   },
 };

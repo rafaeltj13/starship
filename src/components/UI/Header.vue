@@ -1,12 +1,20 @@
 <template>
-  <div class="flex items-center justify-between pl-[21px] pr-[121px]">
+  <div
+    class="flex items-center justify-between lg:pl-[21px] lg:pr-[121px] pr-[32px]"
+  >
     <img
       @click="goToView('Home')"
       src="/logo.png"
       class="cursor-pointer"
       alt="Logo"
     />
-    <Button @click="goToView('Favorites')" :content="t('header.favorites')" />
+    <Button
+      @click="goToView('Favorites')"
+      :content="t('header.favorites')"
+      variant="default"
+      size="lg"
+      :disabled="false"
+    />
   </div>
 </template>
 

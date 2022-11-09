@@ -8,8 +8,15 @@ const API = axios.create({
   },
 });
 
-export const getStarships = async (): Promise<StarshipItem[]> => {
-  return (await API.get("/starships/")).data.results;
+export const getStarships = async (
+  currentPage: number
+): Promise<StarshipItem[]> => {
+  try {
+    return (await API.get("/starships/", { params: { page: currentPage } }))
+      .data.results;
+  } catch (error) {
+    return Promise.resolve([]);
+  }
 };
 
 export const getStarship = async (id: Number): Promise<StarshipItem> => {

@@ -3,14 +3,25 @@
     <p class="text-[48px] font-bold leading-[55px] mb-[60px]">
       {{ t("home.title") }}
     </p>
-    <div v-if="!loading" class="grid grid-cols-2 gap-[32px]">
-      <StarshipCard
-        v-for="starship of starships"
-        :key="starship.url"
-        :starshipName="starship.name"
-        :description="starship.model"
-        :rating="parseInt(starship.hyperdrive_rating)"
-        :passengers="parseInt(starship.passengers)"
+    <div v-if="!loading">
+      <div class="grid lg:grid-cols-2 gap-[32px] md:grid-cols-1">
+        <StarshipCard
+          v-for="starship of starships"
+          :key="starship.url"
+          :starshipName="starship.name"
+          :description="starship.manufacturer"
+          :rating="parseInt(starship.hyperdrive_rating) || 0"
+          :passengers="parseInt(starship.passengers) || 0"
+          :enableNotes="false"
+          :starshipNote="''"
+        />
+      </div>
+      <Paginator
+        class="mt-[52px]"
+        @prev="currentPage--"
+        @next="currentPage++"
+        :currentPage="currentPage"
+        :isLastPage="starships.length < 10"
       />
     </div>
     <div v-else class="flex items-center w-full justify-center">
@@ -20,24 +31,32 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import StarshipCard from "@/components/UI/StarshipCard.vue";
+
 import { getStarships } from "@/services/swapi.service";
 import { StarshipItem } from "@/types/starship";
+import Paginator from "@/components/core/Paginator.vue";
+import StarshipCard from "@/components/UI/StarshipCard.vue";
 
 const { t } = useI18n();
 
 const loading = ref(false);
 const starships = ref<StarshipItem[]>([]);
 
+const currentPage = ref(1);
+
 const findStarships = async () => {
   loading.value = true;
-  starships.value = await getStarships();
+  starships.value = await getStarships(currentPage.value);
   loading.value = false;
 };
 
 onMounted(() => {
+  findStarships();
+});
+
+watch(currentPage, () => {
   findStarships();
 });
 </script>

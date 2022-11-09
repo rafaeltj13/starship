@@ -1,3 +1,39 @@
 <template>
-  <div>asdasdasdfasdasdasdasjkdhasjkdhjaskd</div>
+  <div>
+    <p class="text-[48px] font-bold leading-[55px] mb-[62px]">
+      {{ t("favorites.title") }}
+    </p>
+    <div class="grid lg:grid-cols-2 gap-[32px] md:grid-cols-1">
+      <StarshipCard
+        v-for="starship of favorites"
+        :key="starship.starshipName"
+        :starshipName="starship.starshipName"
+        :description="starship.description"
+        :rating="starship.rating || 0"
+        :passengers="starship.passengers || 0"
+        :enableNotes="true"
+        :starshipNote="notes[`${starship.starshipName}`] || ''"
+      />
+    </div>
+    <Paginator class="mt-[52px]" :currentPage="1" :isLastPage="true" />
+  </div>
 </template>
+
+<script lang="ts" setup>
+import { useI18n } from "vue-i18n";
+import { storeToRefs } from "pinia";
+
+import { useFavoritesStore } from "@/stores/favorites";
+import { useNotesStore } from "@/stores/notes";
+import StarshipCard from "@/components/UI/StarshipCard.vue";
+
+import Paginator from "@/components/core/Paginator.vue";
+
+const { t } = useI18n();
+
+const favoritesStore = useFavoritesStore();
+const { favorites } = storeToRefs(favoritesStore);
+
+const notesStore = useNotesStore();
+const { notes } = storeToRefs(notesStore);
+</script>

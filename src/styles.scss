@@ -9,5 +9,18 @@
 
   body {
     --tw-bg-opacity: 1;
+
+    div::-webkit-scrollbar {
+      width: 8px; /* width of the entire scrollbar */
+    }
+
+    div::-webkit-scrollbar-track {
+      background: #000408;
+    }
+
+    div::-webkit-scrollbar-thumb {
+      background-color: #232524;
+      border-radius: 20px;
+    }
   }
 }

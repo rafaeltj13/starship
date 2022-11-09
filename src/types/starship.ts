@@ -1,18 +1,18 @@
 export type StarshipItem = {
   MGLT: String;
-  cargo_capacity: Number;
+  cargo_capacity: String;
   consumables: String;
-  cost_in_credits: Number;
+  cost_in_credits: String;
   created: Date;
-  crew: Number;
+  crew: String;
   edited: Date;
-  hyperdrive_rating: Number;
-  length: Number;
+  hyperdrive_rating: String;
+  length: String;
   manufacturer: String;
   max_atmosphering_speed: String;
   model: String;
   name: String;
-  passengers: Number;
+  passengers: String;
   films: String[];
   pilots: String[];
   starship_class: String;

@@ -5,9 +5,13 @@ import Header from "@/components/UI/Header.vue";
 </script>
 
 <template>
-  <div class="bg-dark-primary h-screen text-white-primary">
+  <div
+    class="bg-dark-primary h-screen overflow-y-hidden text-white-primary pb-16"
+  >
     <Header />
-    <router-view />
+    <div class="pl-[94px] pt-[38px] pr-[120px] overflow-y-auto h-screen">
+      <router-view />
+    </div>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { StarshipItem } from "../types/starship";
+import { StarshipItem } from "@/types/starship";
 
 const API = axios.create({
   baseURL: "https://swapi.dev/api",
@@ -9,7 +9,7 @@ const API = axios.create({
 });
 
 export const getStarships = async (): Promise<StarshipItem[]> => {
-  return (await API.get("/starships/")).data;
+  return (await API.get("/starships/")).data.results;
 };
 
 export const getStarship = async (id: Number): Promise<StarshipItem> => {

@@ -4,7 +4,7 @@ import i18n from "@/plugins/i18n";
 import router from "@/router";
 
 import App from "@/App.vue";
-import "@/styles.scss";
+import "@/assets/styles/styles.scss";
 
 const pinia = createPinia();
 

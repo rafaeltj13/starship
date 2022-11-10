@@ -1,9 +1,13 @@
 <template>
-  <div class="w-full p-6 bg-dark-secondary rounded-2xl">
-    <div class="flex justify-between">
-      <div>
+  <div
+    class="w-full p-6 bg-dark-secondary rounded-2xl flex flex-col justify-between"
+  >
+    <div class="flex justify-between gap-2">
+      <div class="max-w-[50%]">
         <p class="text-[24px] font-bold mb-4">{{ starshipName }}</p>
-        <p class="text-[18px] font-normal mb-3">{{ description }}</p>
+        <p class="text-[18px] font-normal mb-3">
+          {{ description }}
+        </p>
         <Rating class="mb-3" :rating="props.rating" />
         <p class="text-[18px] font-normal mb-3">
           {{ t("home.passengers", { number: passengers || 0 }) }}
@@ -11,8 +15,8 @@
       </div>
       <div class="relative">
         <img
-          src="/starship.svg"
-          class="cursor-pointer w-[226px] h-[162px] rounded-lg"
+          src="/startshipCard/starship.svg"
+          class="cursor-pointer xs:w-[94px] sm:w-[226px] lg:w-[226px] h-[162px] rounded-lg"
           alt="starship"
         />
         <FavoriteButton
@@ -38,9 +42,9 @@ import { storeToRefs } from "pinia";
 
 import { useFavoritesStore } from "@/stores/favorites";
 import { useNotesStore } from "@/stores/notes";
-import TextArea from "@/components/basic/TextArea.vue";
-import FavoriteButton from "@/components/core/FavoriteButton.vue";
-import Rating from "@/components/core/Rating.vue";
+import TextArea from "@/components/basic/AppTextArea.vue";
+import FavoriteButton from "@/components/starship/FavoriteButton.vue";
+import Rating from "@/components/starship/Rating.vue";
 
 const props = defineProps<{
   starshipName: string;

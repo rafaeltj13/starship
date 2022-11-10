@@ -9,6 +9,7 @@
       alt="Logo"
     />
     <Button
+      v-if="route.name !== 'Favorites'"
       @click="goToView('Favorites')"
       :content="t('header.favorites')"
       variant="default"
@@ -19,12 +20,13 @@
 </template>
 
 <script lang="ts" setup>
-import Button from "@/components/basic/Button.vue";
+import Button from "@/components/basic/AppButton.vue";
 import { useI18n } from "vue-i18n";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const { t } = useI18n();
 const router = useRouter();
+const route = useRoute();
 
 const goToView = (name: string) => {
   router.push({

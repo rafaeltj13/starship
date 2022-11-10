@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import Button from "@/components/basic/Button.vue";
+import Button from "@/components/basic/AppButton.vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();

@@ -9,6 +9,7 @@ export default {
   favorites: {
     title: "Favorites",
     addText: "Add Text",
+    empty: "No favorites found. Try to add one in the home page.",
   },
   paginator: {
     prev: "Previous Page",

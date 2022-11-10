@@ -4,7 +4,11 @@
       {{ t("home.title") }}
     </p>
     <div v-if="!loading">
-      <div class="grid lg:grid-cols-2 gap-[32px] md:grid-cols-1">
+      <TransitionGroup
+        name="list"
+        tag="div"
+        class="grid lg:grid-cols-2 gap-[32px] md:grid-cols-1"
+      >
         <StarshipCard
           v-for="starship of starships"
           :key="starship.url"
@@ -15,7 +19,7 @@
           :enableNotes="false"
           :starshipNote="''"
         />
-      </div>
+      </TransitionGroup>
       <Paginator
         class="mt-[52px]"
         @prev="currentPage--"
@@ -25,19 +29,21 @@
       />
     </div>
     <div v-else class="flex items-center w-full justify-center">
-      <p>Loading...</p>
+      <AppSpinner />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, Ref, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 import { getStarships } from "@/services/swapi.service";
 import { StarshipItem } from "@/types/starship";
-import Paginator from "@/components/core/Paginator.vue";
-import StarshipCard from "@/components/UI/StarshipCard.vue";
+
+import Paginator from "@/components/starship/Paginator.vue";
+import StarshipCard from "@/components/starship/StarshipCard.vue";
+import AppSpinner from "@/components/basic/AppSpinner.vue";
 
 const { t } = useI18n();
 
@@ -48,9 +54,27 @@ const currentPage = ref(1);
 
 const findStarships = async () => {
   loading.value = true;
-  starships.value = await getStarships(currentPage.value);
+  starships.value = [];
+
+  const starshipArray = await getStarships(currentPage.value);
   loading.value = false;
+
+  starshipArray.forEach(async (e: StarshipItem, i: number) =>
+    addItemsOnDelay(e, i, starships)
+  );
 };
+
+const addItemsOnDelay = (
+  item: StarshipItem,
+  index: number,
+  array: Ref<Array<StarshipItem>>
+) =>
+  new Promise<void>((resolve) => {
+    setTimeout(() => {
+      array.value.push(item);
+      resolve();
+    }, 100 * index);
+  });
 
 onMounted(() => {
   findStarships();

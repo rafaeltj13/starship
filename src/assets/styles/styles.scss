@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("./animations.scss");
+
 @layer base {
   html {
     font-family: "Helvetica", system-ui, sans-serif;
@@ -23,18 +25,4 @@
       border-radius: 20px;
     }
   }
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-.list-enter-from {
-  opacity: 0;
-  transform: translateX(-30px);
-}
-
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
 }

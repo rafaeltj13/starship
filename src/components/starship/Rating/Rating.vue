@@ -2,6 +2,7 @@
   <div class="flex items-center gap-2">
     <div v-for="(_, index) of Array(props.rating)">
       <img
+        class="star-rating"
         v-if="props.rating - index >= 1"
         src="/startshipCard/star.svg"
         alt="star"

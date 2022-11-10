@@ -41,8 +41,8 @@ import { useI18n } from "vue-i18n";
 import { getStarships } from "@/services/swapi.service";
 import { StarshipItem } from "@/types/starship";
 
-import Paginator from "@/components/starship/Paginator.vue";
-import StarshipCard from "@/components/starship/StarshipCard.vue";
+import Paginator from "@/components/starship/Paginator/Paginator.vue";
+import StarshipCard from "@/components/starship/StarshipCard/StarshipCard.vue";
 import AppSpinner from "@/components/basic/AppSpinner.vue";
 
 const { t } = useI18n();

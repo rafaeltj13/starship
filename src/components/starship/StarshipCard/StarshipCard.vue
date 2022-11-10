@@ -29,7 +29,7 @@
     <TextArea
       v-if="props.enableNotes"
       v-model="note"
-      class="mt-4"
+      class="starship-card-text-area mt-4"
       :placeholer="t('favorites.addText')"
     />
   </div>
@@ -43,8 +43,8 @@ import { storeToRefs } from "pinia";
 import { useFavoritesStore } from "@/stores/favorites";
 import { useNotesStore } from "@/stores/notes";
 import TextArea from "@/components/basic/AppTextArea.vue";
-import FavoriteButton from "@/components/starship/FavoriteButton.vue";
-import Rating from "@/components/starship/Rating.vue";
+import FavoriteButton from "@/components/starship/FavoriteButton/FavoriteButton.vue";
+import Rating from "@/components/starship/Rating/Rating.vue";
 
 const props = defineProps<{
   starshipName: string;

@@ -15,4 +15,5 @@ export default {
     prev: "Previous Page",
     next: "Next Page",
   },
+  notFound: "Page not found!",
 };

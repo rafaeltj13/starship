@@ -36,9 +36,9 @@ import { storeToRefs } from "pinia";
 
 import { useFavoritesStore } from "@/stores/favorites";
 import { useNotesStore } from "@/stores/notes";
-import StarshipCard from "@/components/starship/StarshipCard.vue";
+import StarshipCard from "@/components/starship/StarshipCard/StarshipCard.vue";
 
-import Paginator from "@/components/starship/Paginator.vue";
+import Paginator from "@/components/starship/Paginator/Paginator.vue";
 
 const { t } = useI18n();
 

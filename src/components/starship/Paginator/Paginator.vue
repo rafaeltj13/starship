@@ -8,7 +8,7 @@
       :disabled="props.currentPage === 1"
     />
     <Button
-      class="ml-3"
+      class="next-page-button ml-3"
       variant="default"
       @click="emit('next')"
       :content="t('paginator.next')"
